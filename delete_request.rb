@@ -1,19 +1,23 @@
 class DeleteRequest
   attr_reader :response
 
+  def initialize( addr='localhost', port=8000 )
+    @addr = addr
+    @port = port
+  end
+
   def header
     [
       'DELETE /kvs HTTP/1.1',
-      'Host: localhost:8000'
+      "Host: #{@addr}:#{@port}"
     ]
   end
 
+  def dry_run
+    %Q( echo "#{header.join('\n')}" | nc -c #{@addr} #{@port} )
+  end
+
   def run
-    command_line = %Q( echo "#{header.join('\n')}" | nc -c localhost 8000 )
-    @response = %x( #{command_line} )
+    @response = %x( #{dry_run} )
   end
 end
-
-delete_requrest = DeleteRequest.new
-delete_requrest.run
-puts delete_requrest.response

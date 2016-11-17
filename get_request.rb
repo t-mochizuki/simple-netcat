@@ -1,19 +1,23 @@
 class GetRequest
   attr_reader :response
 
+  def initialize( addr='localhost', port=8000 )
+    @addr = addr
+    @port = port
+  end
+
   def header
     [
       'GET / HTTP/1.1',
-      'Host: localhost:8000'
+      "Host: #{@addr}:#{@port}"
     ]
   end
 
+  def dry_run
+    %Q( echo "#{header.join('\n')}" | nc -c #{@addr} #{@port} )
+  end
+
   def run
-    command_line = %Q( echo "#{header.join('\n')}" | nc -c localhost 8000 )
-    @response = %x( #{command_line} )
+    @response = %x( #{dry_run} )
   end
 end
-
-get_requrest = GetRequest.new
-get_requrest.run
-puts get_requrest.response

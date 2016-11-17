@@ -1,10 +1,15 @@
 class PostRequest
   attr_reader :response
 
+  def initialize( addr='localhost', port=8000 )
+    @addr = addr
+    @port = port
+  end
+
   def header
     [
       'POST /kvs HTTP/1.1',
-      'Host: localhost:8000',
+      "Host: #{@addr}:#{@port}",
       'Content-Type: application/x-www-form-urlencoded',
       'Content-Length: 17'
     ]
@@ -14,12 +19,11 @@ class PostRequest
     'key=foo&value=bar'
   end
 
+  def dry_run
+    %Q( echo "#{header.join('\n')}\\n\\n#{body}" | nc -c #{@addr} #{@port} )
+  end
+
   def run
-    command_line = %Q( echo "#{header.join('\n')}\n#{body}" | nc -c localhost 8000 )
-    @response = %x( #{command_line} )
+    @response = %x( #{dry_run} )
   end
 end
-
-post_requrest = PostRequest.new
-post_requrest.run
-puts post_requrest.response

@@ -1,10 +1,15 @@
 class PutRequest
   attr_reader :response
 
+  def initialize( addr='localhost', port=8000 )
+    @addr = addr
+    @port = port
+  end
+
   def header
     [
       'PUT /kvs?key=foo HTTP/1.1',
-      'Host: localhost:8000',
+      "Host: #{@addr}:#{@port}",
       'Content-Length: 3'
     ]
   end
@@ -13,12 +18,11 @@ class PutRequest
     'baz'
   end
 
+  def dry_run
+    %Q( echo "#{header.join('\n')}\\n\\n#{body}" | nc -c #{@addr} #{@port} )
+  end
+
   def run
-    command_line = %Q( echo "#{header.join('\n')}\n#{body}" | nc -c localhost 8000 )
-    @response = %x( #{command_line} )
+    @response = %x( #{dry_run} )
   end
 end
-
-put_requrest = PutRequest.new
-put_requrest.run
-puts put_requrest.response
