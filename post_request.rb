@@ -11,7 +11,7 @@ class PostRequest
       'POST /kvs HTTP/1.1',
       "Host: #{@addr}:#{@port}",
       'Content-Type: application/x-www-form-urlencoded',
-      'Content-Length: 17'
+      "Content-Length: #{body.length}"
     ]
   end
 

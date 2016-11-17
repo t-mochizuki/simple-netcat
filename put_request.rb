@@ -10,7 +10,7 @@ class PutRequest
     [
       'PUT /kvs?key=foo HTTP/1.1',
       "Host: #{@addr}:#{@port}",
-      'Content-Length: 3'
+      "Content-Length: #{body.length}"
     ]
   end
 
