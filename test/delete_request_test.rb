@@ -1,5 +1,5 @@
 require 'test/unit'
-require './delete_request.rb'
+require './lib/delete_request.rb'
 
 class DeleteRequestTest < Test::Unit::TestCase
   def setup

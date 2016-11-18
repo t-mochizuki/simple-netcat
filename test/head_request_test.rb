@@ -1,5 +1,5 @@
 require 'test/unit'
-require './head_request.rb'
+require './lib/head_request.rb'
 
 class HeadRequestTest < Test::Unit::TestCase
   def setup

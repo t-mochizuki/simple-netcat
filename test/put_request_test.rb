@@ -1,5 +1,5 @@
 require 'test/unit'
-require './put_request.rb'
+require './lib/put_request.rb'
 
 class PutRequestTest < Test::Unit::TestCase
   def setup
