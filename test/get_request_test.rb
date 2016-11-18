@@ -3,7 +3,7 @@ require './get_request.rb'
 
 class GetRequestTest < Test::Unit::TestCase
   def setup
-    @requrest = GetRequest.new( 'localhost', 4567 )
+    @requrest = GetRequest.new
   end
 
   def test_dry_run

@@ -3,7 +3,7 @@ require './delete_request.rb'
 
 class DeleteRequestTest < Test::Unit::TestCase
   def setup
-    @requrest = DeleteRequest.new( 'localhost', 4567 )
+    @requrest = DeleteRequest.new
   end
 
   def test_dry_run

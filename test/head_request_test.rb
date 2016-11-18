@@ -3,7 +3,7 @@ require './head_request.rb'
 
 class HeadRequestTest < Test::Unit::TestCase
   def setup
-    @requrest = HeadRequest.new( 'localhost', 4567 )
+    @requrest = HeadRequest.new
   end
 
   def test_dry_run

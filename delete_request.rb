@@ -1,6 +1,4 @@
 class DeleteRequest
-  attr_reader :response
-
   def initialize( port=4567, addr='localhost' )
     @port = port
     @addr = addr
@@ -19,7 +17,7 @@ class DeleteRequest
   end
 
   def run
-    @response = %x( #{dry_run} )
+    %x( #{dry_run} )
   end
 end
 

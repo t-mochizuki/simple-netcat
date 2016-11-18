@@ -1,6 +1,4 @@
 class PostRequest
-  attr_reader :response
-
   def initialize( body, port=4567, addr='localhost' )
     @body = body
     @port = port
@@ -22,7 +20,7 @@ class PostRequest
   end
 
   def run
-    @response = %x( #{dry_run} )
+    %x( #{dry_run} )
   end
 end
 
