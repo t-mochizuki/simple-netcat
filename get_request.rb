@@ -20,6 +20,3 @@ class GetRequest
     %x( #{dry_run} )
   end
 end
-
-req = GetRequest.new
-puts req.run

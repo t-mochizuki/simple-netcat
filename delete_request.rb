@@ -20,6 +20,3 @@ class DeleteRequest
     %x( #{dry_run} )
   end
 end
-
-req = DeleteRequest.new
-puts req.run

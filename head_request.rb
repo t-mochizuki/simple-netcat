@@ -20,6 +20,3 @@ class HeadRequest
     %x( #{dry_run} )
   end
 end
-
-req = HeadRequest.new
-puts req.run

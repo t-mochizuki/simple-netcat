@@ -22,6 +22,3 @@ class PutRequest
     %x( #{dry_run} )
   end
 end
-
-# req = PutRequest.new( 'baz' )
-# puts req.run

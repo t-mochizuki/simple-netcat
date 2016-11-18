@@ -23,6 +23,3 @@ class PostRequest
     %x( #{dry_run} )
   end
 end
-
-# req = PostRequest.new( 'key=foo&value=bar' )
-# puts req.run
