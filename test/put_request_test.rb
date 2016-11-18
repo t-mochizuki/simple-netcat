@@ -3,7 +3,7 @@ require './put_request.rb'
 
 class PutRequestTest < Test::Unit::TestCase
   def setup
-    @requrest = PutRequest.new( 'localhost', 4567 )
+    @requrest = PutRequest.new( 'baz' )
   end
 
   def test_dry_run

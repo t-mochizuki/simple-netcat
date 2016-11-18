@@ -3,7 +3,7 @@ require './post_request.rb'
 
 class PostRequestTest < Test::Unit::TestCase
   def setup
-    @requrest = PostRequest.new( 'localhost', 4567 )
+    @requrest = PostRequest.new( 'key=foo&value=bar' )
   end
 
   def test_dry_run

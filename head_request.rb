@@ -1,9 +1,9 @@
 class HeadRequest
   attr_reader :response
 
-  def initialize( addr='localhost', port=4567 )
-    @addr = addr
+  def initialize( port=4567, addr='localhost' )
     @port = port
+    @addr = addr
   end
 
   def header
