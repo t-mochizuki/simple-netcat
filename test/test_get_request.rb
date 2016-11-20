@@ -1,7 +1,7 @@
 require 'test/unit'
 require './lib/get_request.rb'
 
-class GetRequestTest < Test::Unit::TestCase
+class TestGetRequest < Test::Unit::TestCase
   def setup
     @request = SimpleNetcat::GetRequest.new
   end

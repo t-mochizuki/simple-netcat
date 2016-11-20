@@ -1,7 +1,7 @@
 require 'test/unit'
 require './lib/put_request.rb'
 
-class PutRequestTest < Test::Unit::TestCase
+class TestPutRequest < Test::Unit::TestCase
   def setup
     @request = SimpleNetcat::PutRequest.new( 'baz' )
   end

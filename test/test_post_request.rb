@@ -1,7 +1,7 @@
 require 'test/unit'
 require './lib/post_request.rb'
 
-class PostRequestTest < Test::Unit::TestCase
+class TestPostRequest < Test::Unit::TestCase
   def setup
     @request = SimpleNetcat::PostRequest.new( 'key=foo&value=bar' )
   end

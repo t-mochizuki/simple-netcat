@@ -1,9 +1,9 @@
 task :test do
-  puts %x( bundle exec ruby test/get_request_test.rb )
-  puts %x( bundle exec ruby test/head_request_test.rb )
-  puts %x( bundle exec ruby test/post_request_test.rb )
-  puts %x( bundle exec ruby test/put_request_test.rb )
-  puts %x( bundle exec ruby test/delete_request_test.rb )
+  ruby 'test/test_get_request.rb'
+  ruby 'test/test_head_request.rb'
+  ruby 'test/test_post_request.rb'
+  ruby 'test/test_put_request.rb'
+  ruby 'test/test_delete_request.rb'
 end
 
 task :default => [:test]
