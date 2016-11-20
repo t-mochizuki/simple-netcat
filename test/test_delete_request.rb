@@ -1,5 +1,5 @@
 require 'test/unit'
-require './lib/simple_netcat/delete_request.rb'
+require './lib/simple_netcat/delete_request'
 
 class TestDeleteRequest < Test::Unit::TestCase
   def setup
