@@ -3,7 +3,7 @@ require './lib/get_request.rb'
 
 class GetRequestTest < Test::Unit::TestCase
   def setup
-    @request = GetRequest.new
+    @request = SimpleNetcat::GetRequest.new
   end
 
   def test_dry_run

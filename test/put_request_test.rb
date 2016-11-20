@@ -3,7 +3,7 @@ require './lib/put_request.rb'
 
 class PutRequestTest < Test::Unit::TestCase
   def setup
-    @request = PutRequest.new( 'baz' )
+    @request = SimpleNetcat::PutRequest.new( 'baz' )
   end
 
   def test_dry_run

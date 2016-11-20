@@ -3,7 +3,7 @@ require './lib/head_request.rb'
 
 class HeadRequestTest < Test::Unit::TestCase
   def setup
-    @request = HeadRequest.new
+    @request = SimpleNetcat::HeadRequest.new
   end
 
   def test_dry_run

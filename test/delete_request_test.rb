@@ -3,7 +3,7 @@ require './lib/delete_request.rb'
 
 class DeleteRequestTest < Test::Unit::TestCase
   def setup
-    @request = DeleteRequest.new
+    @request = SimpleNetcat::DeleteRequest.new
   end
 
   def test_dry_run

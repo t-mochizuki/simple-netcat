@@ -3,7 +3,7 @@ require './lib/post_request.rb'
 
 class PostRequestTest < Test::Unit::TestCase
   def setup
-    @request = PostRequest.new( 'key=foo&value=bar' )
+    @request = SimpleNetcat::PostRequest.new( 'key=foo&value=bar' )
   end
 
   def test_dry_run
