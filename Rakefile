@@ -1,9 +1,9 @@
-task :test do
-  ruby 'test/test_get_request.rb'
-  ruby 'test/test_head_request.rb'
-  ruby 'test/test_post_request.rb'
-  ruby 'test/test_put_request.rb'
-  ruby 'test/test_delete_request.rb'
+require 'rake/testtask'
+
+Rake::TestTask.new do |t|
+  t.libs << 'test'
+  t.test_files = FileList['test/test*.rb']
+  t.verbose = true
 end
 
 task :default => [:test]
