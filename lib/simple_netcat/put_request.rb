@@ -25,7 +25,8 @@ module SimpleNetcat
       builder << request_line
       header.each { |line| builder << line }
       builder << blank_line
-      builder << @body
+      builder << @body if @body
+      builder
     end
 
     def dry_run
