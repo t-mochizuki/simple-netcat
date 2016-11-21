@@ -13,6 +13,7 @@ module SimpleNetcat
     def header
       [
         "Host: #{@addr}:#{@port}",
+        'Content-Type: application/x-www-form-urlencoded; charset=utf-8',
         "Content-Length: #{@body.length}",
         'Connection: close'
       ]
