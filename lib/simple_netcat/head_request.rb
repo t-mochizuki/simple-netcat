@@ -1,10 +1,12 @@
 require './lib/simple_netcat/blank_line'
 require './lib/simple_netcat/header'
+require './lib/simple_netcat/builder'
 
 module SimpleNetcat
   class HeadRequest
     include BlankLine
     include Header
+    include Builder
 
     def initialize( port=4567, addr='localhost' )
       @port = port
@@ -16,15 +18,6 @@ module SimpleNetcat
 
     def request_line
       'HEAD / HTTP/1.1'
-    end
-
-    def build
-      builder = []
-      builder << request_line
-      header.each { |line| builder << line }
-      builder << blank_line
-      builder << @body if @body
-      builder
     end
 
     def dry_run
