@@ -6,18 +6,33 @@ module SimpleNetcat
       @addr = addr
     end
 
+    def request_line
+      'POST /kvs HTTP/1.1'
+    end
+
     def header
       [
-        'POST /kvs HTTP/1.1',
         "Host: #{@addr}:#{@port}",
         'Content-Type: application/x-www-form-urlencoded',
-          "Content-Length: #{@body.length}",
+        "Content-Length: #{@body.length}",
         'Connection: close'
       ]
     end
 
+    def blank_line
+      ''
+    end
+
+    def build
+      builder = []
+      builder << request_line
+      header.each { |line| builder << line }
+      builder << blank_line
+      builder << @body
+    end
+
     def dry_run
-      %Q( echo "#{header.push('').push(@body).join('\n')}" | nc -c #{@addr} #{@port} )
+      %Q( echo "#{build.join('\n')}" | nc -c #{@addr} #{@port} )
     end
 
     def run
