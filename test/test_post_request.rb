@@ -4,6 +4,8 @@ require './lib/simple_netcat/post_request'
 class TestPostRequest < Test::Unit::TestCase
   def setup
     @request = SimpleNetcat::PostRequest.new( 'key=foo&value=bar' )
+    @request.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
+    @request.connection = 'Connection: close'
   end
 
   def test_dry_run

@@ -4,6 +4,8 @@ require './lib/simple_netcat/put_request'
 class TestPutRequest < Test::Unit::TestCase
   def setup
     @request = SimpleNetcat::PutRequest.new( 'baz' )
+    @request.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
+    @request.connection = 'Connection: close'
   end
 
   def test_dry_run
