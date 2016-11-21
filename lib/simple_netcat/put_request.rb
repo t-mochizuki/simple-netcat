@@ -1,5 +1,9 @@
+require './lib/simple_netcat/blank_line'
+
 module SimpleNetcat
   class PutRequest
+    include BlankLine
+
     def initialize( body, port=4567, addr='localhost' )
       @body = body
       @port = port
@@ -17,10 +21,6 @@ module SimpleNetcat
         "Content-Length: #{@body.length}",
         'Connection: close'
       ]
-    end
-
-    def blank_line
-      ''
     end
 
     def build

@@ -1,5 +1,9 @@
+require './lib/simple_netcat/blank_line'
+
 module SimpleNetcat
   class DeleteRequest
+    include BlankLine
+
     def initialize( port=4567, addr='localhost' )
       @port = port
       @addr = addr
@@ -14,10 +18,6 @@ module SimpleNetcat
         "Host: #{@addr}:#{@port}",
         'Connection: Keep-Alive'
       ]
-    end
-
-    def blank_line
-      ''
     end
 
     def build
