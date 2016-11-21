@@ -1,23 +1,21 @@
 require './lib/simple_netcat/blank_line'
+require './lib/simple_netcat/header'
 
 module SimpleNetcat
   class HeadRequest
     include BlankLine
+    include Header
 
     def initialize( port=4567, addr='localhost' )
       @port = port
       @addr = addr
+      initialize_header do |header|
+        header.host = "Host: #{@addr}:#{@port}"
+      end
     end
 
     def request_line
       'HEAD / HTTP/1.1'
-    end
-
-    def header
-      [
-        "Host: #{@addr}:#{@port}",
-        'Connection: Keep-Alive'
-      ]
     end
 
     def build

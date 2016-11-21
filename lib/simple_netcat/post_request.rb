@@ -1,26 +1,23 @@
 require './lib/simple_netcat/blank_line'
+require './lib/simple_netcat/header'
 
 module SimpleNetcat
   class PostRequest
     include BlankLine
+    include Header
 
     def initialize( body, port=4567, addr='localhost' )
       @body = body
       @port = port
       @addr = addr
+      initialize_header do |header|
+        header.host = "Host: #{@addr}:#{@port}"
+        header.content_length = "Content-Length: #{@body.length}"
+      end
     end
 
     def request_line
       'POST /kvs HTTP/1.1'
-    end
-
-    def header
-      [
-        "Host: #{@addr}:#{@port}",
-        'Content-Type: application/x-www-form-urlencoded; charset=utf-8',
-        "Content-Length: #{@body.length}",
-        'Connection: close'
-      ]
     end
 
     def build
