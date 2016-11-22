@@ -8,6 +8,7 @@ module SimpleNetcat
         puts('* RUN')
         puts('* DRY-RUN')
         puts('* DISPLAY')
+        puts('* EDIT')
         print 'Netcat> '
         command = gets.strip.downcase
 
@@ -18,6 +19,18 @@ module SimpleNetcat
           puts req.dry_run
         when /^di.?.?.?.?.?$/
           req.display
+        when /^e.?.?.?$/
+          while true
+            puts 'Please input a http header or quit'
+            print 'Netcat> '
+            http_header = gets.strip
+            if http_header.include?(':')
+              tag, value = http_header.split(':', 2)
+              eval( %Q( req.#{tag.sub( '-', '_' ).downcase} = "#{tag}:#{value}" ) )
+            else
+              break
+            end
+          end
         else
           break
         end
