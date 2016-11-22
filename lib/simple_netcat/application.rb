@@ -11,26 +11,26 @@ module SimpleNetcat
         puts('* PUT')
         puts('* DELETE')
         print 'Netcat> '
-        http_method = gets.strip
+        http_method = gets.strip.downcase
 
         case http_method
-        when 'GET'
+        when /g.?.?/
           req = GetRequest.new
           req.run
-        when 'HEAD'
+        when /h.?.?.?/
           req = HeadRequest.new
           req.run
-        when 'POST'
+        when /po.?.?/
           req = PostRequest.new( 'key=foo&value=bar', '', 'kvs' )
           req.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
           req.connection = 'Connection: close'
           req.run
-        when 'PUT'
+        when /pu.?/
           req = PutRequest.new( 'value=baz', '', 'kvs' )
           req.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
           req.connection = 'Connection: close'
           req.run
-        when 'DELETE'
+        when /d.?.?.?.?.?/
           req = DeleteRequest.new( '', 'kvs' )
           req.run
         else
