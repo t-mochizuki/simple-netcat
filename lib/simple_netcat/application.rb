@@ -21,17 +21,17 @@ module SimpleNetcat
           req = HeadRequest.new
           req.run
         when 'POST'
-          req = PostRequest.new('key=foo&value=bar')
+          req = PostRequest.new( 'key=foo&value=bar', '', 'kvs' )
           req.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
           req.connection = 'Connection: close'
           req.run
         when 'PUT'
-          req = PutRequest.new('value=baz')
+          req = PutRequest.new( 'value=baz', '', 'kvs' )
           req.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
           req.connection = 'Connection: close'
           req.run
         when 'DELETE'
-          req = DeleteRequest.new
+          req = DeleteRequest.new( '', 'kvs' )
           req.run
         else
           break

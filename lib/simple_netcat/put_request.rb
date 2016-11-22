@@ -8,8 +8,10 @@ module SimpleNetcat
     include Header
     include Builder
 
-    def initialize( body, port=4567, addr='localhost' )
+    def initialize( body, param='', path='', port=4567, addr='localhost' )
       @body = body
+      @param = param
+      @path = path
       @port = port
       @addr = addr
       initialize_header do |header|
@@ -19,7 +21,11 @@ module SimpleNetcat
     end
 
     def request_line
-      'PUT /kvs?key=foo HTTP/1.1'
+      if @param.empty?
+        "PUT /#{@path} HTTP/1.1"
+      else
+        "PUT /#{@path}?#{@param} HTTP/1.1"
+      end
     end
 
     def dry_run

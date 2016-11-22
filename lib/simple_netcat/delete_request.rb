@@ -8,7 +8,9 @@ module SimpleNetcat
     include Header
     include Builder
 
-    def initialize( port=4567, addr='localhost' )
+    def initialize( param='', path='', port=4567, addr='localhost' )
+      @param = param
+      @path = path
       @port = port
       @addr = addr
       initialize_header do |header|
@@ -17,7 +19,11 @@ module SimpleNetcat
     end
 
     def request_line
-      'DELETE /kvs HTTP/1.1'
+      if @param.empty?
+      "DELETE /#{@path} HTTP/1.1"
+      else
+      "DELETE /#{@path}?#{@param} HTTP/1.1"
+      end
     end
 
     def dry_run
