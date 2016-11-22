@@ -2,6 +2,7 @@ require './lib/simple_netcat/blank_line'
 require './lib/simple_netcat/header'
 require './lib/simple_netcat/builder'
 require './lib/simple_netcat/request_line'
+require './lib/simple_netcat/display'
 
 module SimpleNetcat
   class PostRequest
@@ -9,6 +10,7 @@ module SimpleNetcat
     include Header
     include Builder
     include RequestLine
+    include Display
 
     attr_writer :param, :path
 
