@@ -10,6 +10,8 @@ module SimpleNetcat
     include Builder
     include RequestLine
 
+    attr_writer :param, :path
+
     def initialize( param='', path='', port=4567, addr='localhost' )
       @http_method = 'GET'
       @param = param
