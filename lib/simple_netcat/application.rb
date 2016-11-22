@@ -2,6 +2,28 @@ module SimpleNetcat
 
   class Application
 
+    def command( req )
+      while true
+        puts('Please select command or quit')
+        puts('* RUN')
+        puts('* DRY-RUN')
+        puts('* DISPLAY')
+        print 'Netcat> '
+        command = gets.strip.downcase
+
+        case command
+        when 'run'
+          req.run
+        when /^dr.?.?.?.?.?$/
+          puts req.dry_run
+        when /^di.?.?.?.?.?$/
+          req.display
+        else
+          break
+        end
+      end
+    end
+
     def repl
       while true
         puts('Please select HTTP method or quit')
@@ -14,25 +36,25 @@ module SimpleNetcat
         http_method = gets.strip.downcase
 
         case http_method
-        when /g.?.?/
+        when /^g.?.?$/
           req = GetRequest.new
-          req.run
-        when /h.?.?.?/
+          command( req )
+        when /^h.?.?.?$/
           req = HeadRequest.new
-          req.run
-        when /po.?.?/
+          command( req )
+        when /^po.?.?$/
           req = PostRequest.new( 'key=foo&value=bar', '', 'kvs' )
           req.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
           req.connection = 'Connection: close'
-          req.run
-        when /pu.?/
+          command( req )
+        when /^pu.?$/
           req = PutRequest.new( 'value=baz', '', 'kvs' )
           req.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
           req.connection = 'Connection: close'
-          req.run
-        when /d.?.?.?.?.?/
+          command( req )
+        when /^d.?.?.?.?.?$/
           req = DeleteRequest.new( '', 'kvs' )
-          req.run
+          command( req )
         else
           break
         end
