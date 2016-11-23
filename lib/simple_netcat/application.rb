@@ -4,7 +4,7 @@ module SimpleNetcat
 
     def command( req )
       while true
-        puts('Please select command or quit')
+        puts('Please input a command or quit')
         puts('* RUN')
         puts('* DRY-RUN')
         puts('* DISPLAY')
@@ -21,7 +21,7 @@ module SimpleNetcat
           req.display
         when /^e.?.?.?$/
           while true
-            puts 'Please input a http header or quit'
+            puts 'Please input a HTTP header or quit'
             print 'Netcat> '
             http_header = gets.strip
             if http_header.include?(':')
@@ -39,7 +39,7 @@ module SimpleNetcat
 
     def repl
       while true
-        puts('Please select HTTP method or quit')
+        puts('Please input a HTTP method or quit')
         puts('* GET')
         puts('* HEAD')
         puts('* POST')
