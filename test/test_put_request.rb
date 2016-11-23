@@ -4,12 +4,12 @@ require './lib/simple_netcat/put_request'
 class TestPutRequest < Test::Unit::TestCase
   def setup
     @request = SimpleNetcat::PutRequest.new( 'baz', 'key=foo', 'kvs' )
-    @request.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
-    @request.connection = 'Connection: close'
+    @request.header.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
+    @request.header.connection = 'Connection: close'
   end
 
   def test_dry_run
-    dry_run = ' echo "PUT /kvs?key=foo HTTP/1.1\nHost: localhost:4567\nContent-Type: application/x-www-form-urlencoded; charset=utf-8\nContent-Length: 3\nConnection: close\n\nbaz" | nc -c localhost 4567 '
+    dry_run = ' echo "PUT /kvs?key=foo HTTP/1.1\nHost: localhost:4567\nContent-Length: 3\nContent-Type: application/x-www-form-urlencoded; charset=utf-8\nConnection: close\n\nbaz" | nc -c localhost 4567 '
     assert_equal @request.dry_run, dry_run
   end
 

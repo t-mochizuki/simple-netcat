@@ -26,7 +26,7 @@ module SimpleNetcat
             http_header = gets.strip
             if http_header.include?(':')
               tag, value = http_header.split(':', 2)
-              eval( %Q( req.#{tag.sub( '-', '_' ).downcase} = "#{tag}:#{value}" ) )
+              eval( %Q( req.header.#{tag.sub( '-', '_' ).downcase} = "#{tag}:#{value}" ) )
             else
               break
             end
@@ -57,13 +57,13 @@ module SimpleNetcat
           command( req )
         when /^po.?.?$/
           req = PostRequest.new( 'key=foo&value=bar', '', 'kvs' )
-          req.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
-          req.connection = 'Connection: close'
+          req.header.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
+          req.header.connection = 'Connection: close'
           command( req )
         when /^pu.?$/
           req = PutRequest.new( 'value=baz', '', 'kvs' )
-          req.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
-          req.connection = 'Connection: close'
+          req.header.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
+          req.header.connection = 'Connection: close'
           command( req )
         when /^d.?.?.?.?.?$/
           req = DeleteRequest.new( '', 'kvs' )

@@ -3,7 +3,7 @@ module SimpleNetcat
     def build
       builder = []
       builder << request_line
-      header.each { |line| builder << line }
+      header.each_pair { |k, v| builder << v }
       builder << blank_line
       builder << @body if @body
       builder

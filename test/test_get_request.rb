@@ -4,7 +4,7 @@ require './lib/simple_netcat/get_request'
 class TestGetRequest < Test::Unit::TestCase
   def setup
     @request = SimpleNetcat::GetRequest.new
-    @request.connection = 'Connection: Keep-Alive'
+    @request.header.connection = 'Connection: Keep-Alive'
   end
 
   def test_dry_run

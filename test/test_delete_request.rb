@@ -4,7 +4,7 @@ require './lib/simple_netcat/delete_request'
 class TestDeleteRequest < Test::Unit::TestCase
   def setup
     @request = SimpleNetcat::DeleteRequest.new( '', 'kvs' )
-    @request.connection = 'Connection: Keep-Alive'
+    @request.header.connection = 'Connection: Keep-Alive'
   end
 
   def test_dry_run
