@@ -2,6 +2,14 @@ module SimpleNetcat
 
   class Application
 
+    def initialize
+      @get = GetRequest.new
+      @head = HeadRequest.new
+      @post = PostRequest.new( 'key=foo&value=bar', '', 'kvs' )
+      @put = PutRequest.new( 'value=baz', '', 'kvs' )
+      @delete = DeleteRequest.new( '', 'kvs' )
+    end
+
     def command( req )
       while true
         puts('Please input a command or quit')
@@ -50,24 +58,19 @@ module SimpleNetcat
 
         case http_method
         when /^g.?.?$/
-          req = GetRequest.new
-          command( req )
+          command( @get )
         when /^h.?.?.?$/
-          req = HeadRequest.new
-          command( req )
+          command( @head )
         when /^po.?.?$/
-          req = PostRequest.new( 'key=foo&value=bar', '', 'kvs' )
-          req.header.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
-          req.header.connection = 'Connection: close'
-          command( req )
+          @post.header.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
+          @post.header.connection = 'Connection: close'
+          command( @post )
         when /^pu.?$/
-          req = PutRequest.new( 'value=baz', '', 'kvs' )
-          req.header.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
-          req.header.connection = 'Connection: close'
-          command( req )
+          @put.header.content_type = 'Content-Type: application/x-www-form-urlencoded; charset=utf-8'
+          @put.header.connection = 'Connection: close'
+          command( @put )
         when /^d.?.?.?.?.?$/
-          req = DeleteRequest.new( '', 'kvs' )
-          command( req )
+          command( @delete )
         else
           break
         end
