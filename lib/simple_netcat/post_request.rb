@@ -1,8 +1,8 @@
 require 'ostruct'
-require './lib/simple_netcat/blank_line'
-require './lib/simple_netcat/builder'
-require './lib/simple_netcat/request_line'
-require './lib/simple_netcat/display'
+require 'simple_netcat/blank_line'
+require 'simple_netcat/builder'
+require 'simple_netcat/request_line'
+require 'simple_netcat/display'
 
 module SimpleNetcat
   class PostRequest

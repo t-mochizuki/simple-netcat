@@ -1,5 +1,5 @@
 require 'test/unit'
-require './lib/simple_netcat/put_request'
+require 'simple_netcat/put_request'
 
 class TestPutRequest < Test::Unit::TestCase
   def setup

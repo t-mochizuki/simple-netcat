@@ -1,4 +1,4 @@
-require './lib/simple_netcat/application'
+require 'simple_netcat/application'
 
 module SimpleNetcat
 
